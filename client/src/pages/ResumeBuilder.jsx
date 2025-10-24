@@ -12,6 +12,7 @@ import {
   Sparkles,
   User,
 } from "lucide-react";
+import PersonalInforForm from "../components/PersonalInforForm";
 
 const ResumeBuilder = () => {
   const { resumeId } = useParams();
@@ -37,7 +38,7 @@ const ResumeBuilder = () => {
   };
 
   const [activeSectionIndex, setActiveSectionIndex] = useState(0);
-  const [removeBackground, setremoveBackground] = useState(false);
+  const [removeBackground, setRemoveBackground] = useState(false);
 
   const sections = [
     { id: "personal", name: "Personal Info", icon: User },
@@ -122,7 +123,7 @@ const ResumeBuilder = () => {
 
               <div className="space-y-6">
                 {activeSection.id==='personal'&&(
-                  <div></div>
+                  <PersonalInforForm data={resumeData.personal_info} onChange={(data)=>setResumeData(prev=>({...prev,personal_info:data}))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground}/>
                 )}
               </div>
 
