@@ -9,6 +9,7 @@ const generateToken=(userId)=>{
 
 
 }
+
 //contoller for user registeration
 //POST:/api/users/register
 

@@ -30,6 +30,8 @@ export const enhanceProfessionalSummary = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
+
+
 //controller for enhnacing a resume job descp
 //POST: /api/ai/enhance/enhnace-job-desc
 
