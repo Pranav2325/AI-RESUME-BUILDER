@@ -72,35 +72,36 @@ export const loginUser = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   try {
-    const userId=req.userId;
-    //check if user exist
-    const user=await User.findOne(userId)
-    if(!user){
-        return res.status(404).json({message:'User not found'})
+    const userId = req.userId;
+
+    if (!userId) {
+      return res.status(400).json({ message: "User ID missing from token" });
     }
-    //return user
-    user.password=undefined;
 
+    // Use findById (not findOne(userId))
+    const user = await User.findById(userId).select("-password");
 
-   
-    return res.status(200).json({user})
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ user });
   } catch (error) {
-   return res.status(400).json({message:error.message})
+    return res.status(400).json({ message: error.message });
   }
 };
-
 //conroller for getting user resumes
 //GET:/api/users/resumes
 
-export const getUserResumes=async(req,res)=>{
+export const getUserResumes = async (req, res) => {
   try {
-    const userId=req.userId;
-    //return user resumes
-    const resumes=await Resume.findOne({userId})
-    return res.status(200).json({resumes})
-    
+    const userId = req.userId;
+
+    // find all resumes for this user
+    const resumes = await Resume.find({ userId });
+
+    return res.status(200).json({ resumes }); // now it's an array
   } catch (error) {
-    return res.status(400).json({message:error.message})
-    
+    return res.status(400).json({ message: error.message });
   }
 }
