@@ -32,6 +32,7 @@ export const deleteResume = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
+
 //get user resume by id
 //GET:/api/resumes/get
 export const getResumeById = async (req, res) => {
@@ -76,7 +77,7 @@ export const updateResume = async (req, res) => {
     const { resumeId, resumeData, removeBackground } = req.body;
     const image = req.file;
 
-    let resumeDataCopy = JSON.parse(resumeData);
+    let resumeDataCopy = JSON.parse(JSON.stringify(resumeData));
 
     if (image) {
         const imageBufferData=fs.createReadStream(image.path)
