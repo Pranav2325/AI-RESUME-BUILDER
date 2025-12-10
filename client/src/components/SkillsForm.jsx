@@ -31,8 +31,8 @@ const SkillsForm = ({ data, onChange }) => {
       </div>
       <div className="flex gap-2">
         <input
-          onClick={addSkill}
-          disabled={!newSkill.trim()}
+          
+          
           type="text"
           placeholder="Enter a skill (e.g java, github)"
           className="flex-1 px-3 py-2 text-sm"
@@ -40,7 +40,7 @@ const SkillsForm = ({ data, onChange }) => {
           value={newSkill}
           onKeyDown={handleKeyPress}
         />
-        <button className="flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        <button onClick={addSkill} disabled={!newSkill.trim()} className="flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
           <Plus className="size-4" /> Add
         </button>
       </div>
